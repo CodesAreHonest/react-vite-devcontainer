@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.238.0/containers/typescript-node
 {
-  "name": "Node.js & TypeScript",
+  "name": "devcontainer-react",
   "build": {
     "dockerfile": "Dockerfile",
     // Update 'VARIANT' to pick a Node version: 18, 16, 14.
@@ -36,11 +36,13 @@
     }
   },
 
+  "workspaceFolder": "/workspaces/devcontainer-react",
+
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [3000],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "yarn install && git config --global --add safe.directory /workspaces/devcontainer-react",
+  "postCreateCommand": "npm install && git config --global --add safe.directory /workspaces/devcontainer-react",
 
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   // "remoteUser": "node",
@@ -51,5 +53,9 @@
 
   "containerEnv": {
     "CHOKIDAR_USEPOLLING": "true"
-  }
+  },
+
+  "mounts": [
+    "source=devcontainer-react-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ]
 }
